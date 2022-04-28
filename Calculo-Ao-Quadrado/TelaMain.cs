@@ -20,7 +20,15 @@ namespace Calculo_Ao_Quadrado
 
         private void btnCalculo_Click(object sender, EventArgs e)
         {
-            int numero = 0;
+
+            if (tbNumero.Text == "")
+            {
+                MessageBox.Show("Digite um número");
+            }
+            else
+            { 
+
+                int numero = 0;
             int quadrado = 0;
 
             numero = Convert.ToInt32(tbNumero.Text);
@@ -33,11 +41,18 @@ namespace Calculo_Ao_Quadrado
 
             tbNumero.SelectAll();
 
-
+           }
         }
 
         private void TelaMain_KeyPress(object sender, KeyPressEventArgs e)
         {
+            if (!char.IsDigit(e.KeyChar))
+            {
+                //Atribui True no Handled para cancelar o evento
+                e.Handled = true;
+
+            }
+
             if (e.KeyChar == 13)
             {
                 btnCalculo.PerformClick();
